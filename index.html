@@ -56,4 +56,8 @@ function makePrompt(){lastPrompt='Genre: '+document.getElementById('genre').valu
 function copyPrompt(){if(!lastPrompt)makePrompt();if(navigator.clipboard){navigator.clipboard.writeText(lastPrompt).then(()=>document.getElementById('promptstatus').textContent='Prompt kopiert.').catch(()=>document.getElementById('promptstatus').textContent=lastPrompt)}else document.getElementById('promptstatus').textContent=lastPrompt}
 function saveMedia(mode){let title=(mode==='video'?document.getElementById('videotitle').value:document.getElementById('pubtitle').value).trim();let input=mode==='video'?document.getElementById('videofile'):document.getElementById('pubfile');let file=input.files[0];if(!file){alert('Bitte zuerst eine Audio- oder Videodatei auswählen.');return}let url=URL.createObjectURL(file);media.push({title:title||file.name,file,url,type:file.type.startsWith('video')?'video':'audio',size:(file.size/1024/1024).toFixed(1)});renderLibrary();alert('Zur lokalen Mediathek hinzugefügt. Noch nicht öffentlich hochgeladen.');}
 function renderLibrary(){let el=document.getElementById('librarylist');if(!media.length){el.innerHTML='<div class="empty">Noch keine Werke hinzugefügt.</div>';return}el.innerHTML=media.map(m=>'<div class="mediaitem"><b>'+safe(m.title)+'</b><p class="sub">'+m.type.toUpperCase()+' · '+m.size+' MB</p>'+(m.type==='video'?'<video controls src="'+m.url+'"></video>':'<audio controls src="'+m.url+'"></audio>')+'</div>').join('')}
-</script></body></html>
+</script>
+<!-- ULTIMA Membership & Credits -->
+<script src="https://ultima-membership-api.onrender.com/membership-widget.js"></script>
+<script>(function(){var sites={"novatube-a10l.onrender.com":["novatube","NovaTube"]};var entry=sites[location.hostname];if(entry&&window.UltimaMembership)window.UltimaMembership.init({siteSlug:entry[0],brand:entry[1]});})();</script>
+</body></html>
