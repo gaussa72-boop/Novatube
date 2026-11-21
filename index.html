@@ -51,7 +51,7 @@ img{max-width:100%;height:auto}
 <script>
 const names={assistant:'KI Assistent',music:'Musik generieren',film:'Film-Simulation KI',video:'Video Studio',library:'Meine Werke',activity:'Likes & Aufrufe',publish:'Veröffentlichen'};let media=[];let activityTab='liked';const ACTIVITY_KEY='novatube:personal-video-activity:v1';let lastPrompt='';let lastFilmPlan='';let lastFilmData=null;
 document.querySelectorAll('.navbtn').forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
-function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.view===id));document.getElementById('topname').textContent=names[id];document.getElementById('sidebar').classList.remove('open')}
+function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.view===id));document.getElementById('topname').textContent=names[id];document.getElementById('sidebar').classList.remove('open');if(id==='activity')renderActivity();if(id==='library')renderLibrary()}
 const initialView=new URLSearchParams(location.search).get('view');if(initialView&&names[initialView])show(initialView);
 async function sendChat(){
  const p=document.getElementById('prompt'),v=p.value.trim();if(!v)return;
