@@ -78,7 +78,17 @@ const NOVA_PROVIDERS=[
 {id:'bandcamp',name:'Bandcamp',type:'music',desc:'Independent-Labels, Alben und Künstlerseiten.',url:'https://bandcamp.com',search:'https://bandcamp.com/search?q=',hosts:['bandcamp.com']},
 {id:'mixcloud',name:'Mixcloud',type:'music',desc:'DJ-Mixe, Radioshows und Musiksendungen.',url:'https://www.mixcloud.com',search:'https://www.mixcloud.com/search/?q=',hosts:['mixcloud.com']},
 {id:'vevo',name:'Vevo',type:'video',desc:'Offizielle Musikvideos und Live-Performances.',url:'https://www.vevo.com',search:'https://www.youtube.com/results?search_query=Vevo+',hosts:['vevo.com']},
-{id:'internetarchive',name:'Internet Archive',type:'video',desc:'Archivierte Filme, historische Aufnahmen und gemeinfreie Medien.',url:'https://archive.org/details/movies',search:'https://archive.org/search?query=',hosts:['archive.org']}
+{id:'internetarchive',name:'Internet Archive',type:'video',desc:'Archivierte Filme, historische Aufnahmen und gemeinfreie Medien.',url:'https://archive.org/details/movies',search:'https://archive.org/search?query=',hosts:['archive.org']},
+{id:'suno',name:'Suno',type:'music',desc:'KI-Songgenerierung mit Gesang und Instrumentierung.',url:'https://suno.com',search:'https://suno.com'},
+{id:'udio',name:'Udio',type:'music',desc:'KI-Musikproduktion und Songideen.',url:'https://udio.com',search:'https://udio.com'},
+{id:'stableaudio',name:'Stable Audio',type:'music',desc:'KI-Musik, Instrumentals und Soundeffekte.',url:'https://stableaudio.com',search:'https://stableaudio.com'},
+{id:'mubert',name:'Mubert',type:'music',desc:'Generative Musik und lizenzierbare Klangwelten.',url:'https://mubert.com',search:'https://mubert.com'},
+{id:'elevenlabs',name:'ElevenLabs',type:'music',desc:'KI-Stimmen, Sprachgenerierung und Audio.',url:'https://elevenlabs.io',search:'https://elevenlabs.io'},
+{id:'runway',name:'Runway',type:'video',desc:'KI-Videogenerierung und kreative Videobearbeitung.',url:'https://runwayml.com',search:'https://runwayml.com'},
+{id:'pika',name:'Pika',type:'video',desc:'KI-generierte Clips und visuelle Effekte.',url:'https://pika.art',search:'https://pika.art'},
+{id:'lumalabs',name:'Luma Dream Machine',type:'video',desc:'KI-Videogenerierung aus Text und Bildern.',url:'https://lumalabs.ai/dream-machine',search:'https://lumalabs.ai'},
+{id:'kling',name:'Kling AI',type:'video',desc:'KI-Videogenerierung und Motion-Workflows.',url:'https://klingai.com',search:'https://klingai.com'},
+{id:'sora',name:'Sora',type:'video',desc:'OpenAI Videogenerierung – Zugang abhängig vom Konto.',url:'https://sora.com',search:'https://sora.com'}
 ];let currentProvider=null,providerFilter='all';
 function novaPremiumClaim(){const token=sessionStorage.getItem('ultima-session:novatube');if(!token)return false;try{const payload=JSON.parse(atob(token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));const plan=String(payload.plan||payload.tier||payload.membership||payload.role||'').toLowerCase();return payload.isPremium===true||payload.premium===true||['premium','pro','lifetime','admin'].includes(plan)}catch(e){return false}}
 function initProviderHub(){const gate=document.getElementById('providerPremiumGate'),content=document.getElementById('providerHubContent');const ok=novaPremiumClaim();gate.classList.toggle('hide',ok);content.classList.toggle('hide',!ok);if(ok)renderProviderHub();}
